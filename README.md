@@ -21,6 +21,8 @@ DEFENSIVE PROGRAMMING
 decimal.TryParse og try/catch sikrer at programmet ikke crasher ved ugyldigt input.
 
 
+LAYERED ARCHITECTURE
+
 Koden følger en simpel Layered Architecture (lagdelt arkitektur) med 3 lag:
 
 BankAccount — håndterer banklogik og validering
