@@ -131,3 +131,7 @@ sequenceDiagram
     BankAccount-->>BankMenu: throws InvalidOperationException
     BankMenu-->>Bruger: Fejl: Insufficient funds
 ```
+
+## Demo
+https://github.com/user-attachments/assets/6b9b4574-a4c4-43e7-a56c-e6a83c9fc750
+
