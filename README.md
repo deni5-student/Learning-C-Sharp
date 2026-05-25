@@ -53,8 +53,11 @@ Starter app          UI og menu logik         Banklogik og validering
 Arkitekturen:
 
 Hvert lag må kun tale med laget under sig:
+
 Program taler med BankMenu
+
 BankMenu taler med BankAccount
+
 BankAccount taler ikke med nogen — den passer sig selv
 
 Hvad det betyder i praksis:
