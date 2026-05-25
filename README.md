@@ -1,3 +1,18 @@
+# 🏦 Bank System — Learning C#
+
+Et simpelt konsolbaseret banksystem bygget i C# som en læringsopgave.
+Projektet demonstrerer grundlæggende OOP principper, encapsulation og layered architecture.
+
+## Hvad programmet kan
+- Indsætte penge (Deposit)
+- Hæve penge (Withdraw)
+- Tjekke saldo (Check Balance)
+
+## Teknologier
+- C# / .NET
+- Konsol applikation
+
+
 Koden opfylder flere principper:
 
 ENCAPSULATION
