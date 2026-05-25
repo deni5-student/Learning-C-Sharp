@@ -1,18 +1,23 @@
 Koden opfylder flere principper:
 
 ENCAPSULATION
+
 balance er private i BankAccount — ingen udefra kan ændre den direkte, kun via Deposit() og Withdraw().
 
 SINGLE RESPONSIBILITY PRINCIPLE (SRP)
+
 Hver klasse har ét ansvarsområde:
 
 SEPARATION OF CONCERNS
+
 Relateret til SRP — logik, UI og opstart er adskilt i hver sin klasse og blander sig ikke i hinandens arbejde.
 
 OBJECT ORIENTED PROGRAMMING (OOP)
-Du bruger klasser og objekter som new BankMenu() og new BankAccount() i stedet for at have alt i én lang Main metode.
+
+Bruger klasser og objekter som new BankMenu() og new BankAccount() i stedet for at have alt i én lang Main metode.
 
 DEFENSIVE PROGRAMMING
+
 decimal.TryParse og try/catch sikrer at programmet ikke crasher ved ugyldigt input.
 
 
