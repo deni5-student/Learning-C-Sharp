@@ -64,3 +64,86 @@ Hvad det betyder i praksis:
 
 Hvis du vil lave en ny UI kan du bare udskifte BankMenu (UI) uden at røre BankAccount
 Hvis du vil ændre banklogikken ændrer du kun BankAccount uden at røre resten
+
+
+# Bank System
+
+## Domæne Model
+
+```mermaid
+classDiagram
+    class BankAccount {
+        -balance: decimal
+    }
+    class Transaction {
+        +amount: decimal
+        +type: string
+    }
+    BankAccount "1" --> "*" Transaction
+```
+
+## Klasse Diagram
+
+```mermaid
+classDiagram
+    class Program {
+        +Main(args: string)
+    }
+    class BankMenu {
+        -bankAccount: BankAccount
+        +Start()
+        -ShowMenu()
+        -Deposit()
+        -Withdraw()
+    }
+    class BankAccount {
+        -balance: decimal
+        +Deposit(amount: decimal)
+        +Withdraw(amount: decimal)
+        +GetBalance() decimal
+    }
+    Program --> BankMenu : creates
+    BankMenu --> BankAccount : uses
+```
+
+## Use Case Diagram
+
+```mermaid
+graph TD
+    Bruger((Bruger))
+    Bruger --> UC1[Deposit money]
+    Bruger --> UC2[Withdraw money]
+    Bruger --> UC3[Check Balance]
+```
+
+## Sekvens Diagram - Withdraw success
+
+```mermaid
+sequenceDiagram
+    actor Bruger
+    participant BankMenu
+    participant BankAccount
+
+    Bruger->>BankMenu: Vælger "2" Withdraw
+    BankMenu->>BankAccount: Withdraw(amount)
+    BankAccount->>BankAccount: Tjek amount > 0
+    BankAccount->>BankAccount: Tjek balance >= amount
+    BankAccount->>BankAccount: balance -= amount
+    BankAccount-->>BankMenu: OK
+    BankMenu-->>Bruger: ✓ Withdrawal completed
+```
+
+## Sekvens Diagram - Withdraw fejl
+
+```mermaid
+sequenceDiagram
+    actor Bruger
+    participant BankMenu
+    participant BankAccount
+
+    Bruger->>BankMenu: Vælger "2" Withdraw
+    BankMenu->>BankAccount: Withdraw(amount)
+    BankAccount->>BankAccount: amount > balance
+    BankAccount-->>BankMenu: throws InvalidOperationException
+    BankMenu-->>Bruger: Fejl: Insufficient funds
+```
