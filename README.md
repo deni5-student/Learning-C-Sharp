@@ -3,6 +3,8 @@
 Et simpelt konsolbaseret banksystem bygget i C# som en læringsopgave.
 Projektet demonstrerer grundlæggende OOP principper, encapsulation og layered architecture.
 
+---
+
 ## Hvad programmet kan
 - Indsætte penge (Deposit)
 - Hæve penge (Withdraw)
@@ -12,44 +14,33 @@ Projektet demonstrerer grundlæggende OOP principper, encapsulation og layered a
 - C# / .NET
 - Konsol applikation
 
+---
 
-Koden opfylder flere principper:
+## Principper
 
-ENCAPSULATION
+### Encapsulation
+`balance` er `private` i `BankAccount` — ingen udefra kan ændre den direkte, kun via `Deposit()` og `Withdraw()`.
 
-balance er private i BankAccount — ingen udefra kan ændre den direkte, kun via Deposit() og Withdraw().
-
-SINGLE RESPONSIBILITY PRINCIPLE (SRP)
-
+### Single Responsibility Principle (SRP)
 Hver klasse har ét ansvarsområde:
+- `BankAccount` — banklogik og validering
+- `BankMenu` — UI og brugerinput
+- `Program` — starter applikationen
 
-SEPARATION OF CONCERNS
+### Separation of Concerns
+Logik, UI og opstart er adskilt i hver sin klasse og blander sig ikke i hinandens arbejde.
 
-Relateret til SRP — logik, UI og opstart er adskilt i hver sin klasse og blander sig ikke i hinandens arbejde.
+### Object Oriented Programming (OOP)
+Bruger klasser og objekter i stedet for at have alt i én lang `Main` metode.
 
-OBJECT ORIENTED PROGRAMMING (OOP)
+### Defensive Programming
+`decimal.TryParse` og `try/catch` sikrer at programmet ikke crasher ved ugyldigt input.
 
-Bruger klasser og objekter som new BankMenu() og new BankAccount() i stedet for at have alt i én lang Main metode.
+---
 
-DEFENSIVE PROGRAMMING
+## Arkitektur
 
-decimal.TryParse og try/catch sikrer at programmet ikke crasher ved ugyldigt input.
-
-
-LAYERED ARCHITECTURE
-
-(a foundational software design pattern)
-
-Koden følger en simpel Layered Architecture (lagdelt arkitektur) med 3 lag:
-
-BankAccount — håndterer banklogik og validering
-
-BankMenu — håndterer UI og brugerinput
-
-Program — starter applikationen
-
-Program.cs      →    BankMenu.cs         →    BankAccount.cs
-Starter app          UI og menu logik         Banklogik og validering
+Koden følger en simpel **Layered Architecture** med 3 lag:
 
 ```mermaid
 graph TD
@@ -59,26 +50,16 @@ graph TD
     A --> B --> C
 ```
 
-Arkitekturen:
-
 Hvert lag må kun tale med laget under sig:
+- `Program` taler med `BankMenu`
+- `BankMenu` taler med `BankAccount`
+- `BankAccount` taler ikke med nogen — den passer sig selv
 
-Program taler med BankMenu
+---
 
-BankMenu taler med BankAccount
+## Diagrammer
 
-BankAccount taler ikke med nogen — den passer sig selv
-
-Hvad det betyder i praksis:
-
-Hvis du vil lave en ny UI kan du bare udskifte BankMenu (UI) uden at røre BankAccount
-Hvis du vil ændre banklogikken ændrer du kun BankAccount uden at røre resten
-
-
-# Bank System
-
-## Domæne Model
-
+### Domæne Model
 ```mermaid
 classDiagram
     class BankAccount {
@@ -91,8 +72,7 @@ classDiagram
     BankAccount "1" --> "*" Transaction
 ```
 
-## Klasse Diagram
-
+### Klasse Diagram
 ```mermaid
 classDiagram
     class Program {
@@ -115,8 +95,7 @@ classDiagram
     BankMenu --> BankAccount : uses
 ```
 
-## Use Case Diagram
-
+### Use Case Diagram
 ```mermaid
 graph TD
     Bruger((Bruger))
@@ -125,14 +104,12 @@ graph TD
     Bruger --> UC3[Check Balance]
 ```
 
-## Sekvens Diagram - Withdraw success
-
+### Sekvens Diagram — Withdraw success
 ```mermaid
 sequenceDiagram
     actor Bruger
     participant BankMenu
     participant BankAccount
-
     Bruger->>BankMenu: Vælger "2" Withdraw
     BankMenu->>BankAccount: Withdraw(amount)
     BankAccount->>BankAccount: Tjek amount > 0
@@ -142,14 +119,12 @@ sequenceDiagram
     BankMenu-->>Bruger: ✓ Withdrawal completed
 ```
 
-## Sekvens Diagram - Withdraw fejl
-
+### Sekvens Diagram — Withdraw fejl
 ```mermaid
 sequenceDiagram
     actor Bruger
     participant BankMenu
     participant BankAccount
-
     Bruger->>BankMenu: Vælger "2" Withdraw
     BankMenu->>BankAccount: Withdraw(amount)
     BankAccount->>BankAccount: amount > balance
