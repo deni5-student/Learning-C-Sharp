@@ -26,11 +26,17 @@ Program.cs      →    BankMenu.cs         →    BankAccount.cs
 Starter app          UI og menu logik         Banklogik og validering
 
 ┌─────────────────┐
+
 │   Program.cs    │  ← Entry point / opstartslag
+
 ├─────────────────┤
+
 │   BankMenu.cs   │  ← UI lag (hvad brugeren ser)
+
 ├─────────────────┤
+
 │ BankAccount.cs  │  ← Business logic lag (regler og data)
+
 └─────────────────┘
 
 Arkitekturen:
